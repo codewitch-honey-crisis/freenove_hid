@@ -246,11 +246,13 @@ extern "C" void app_main() {
 
     TaskHandle_t loop_handle;
     xTaskCreate(loop_task,"loop_task",8192,NULL,10,&loop_handle);
-
+    puts("Installing tinyusb driver.");
+    // screen paints, unless this is called:
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
     
 }
 void loop() {
+    // keep this commented for now
     // if (tud_mounted()) {
     //     if(mash_mouse.pressed()) {
     //         do_mash_mouse();
@@ -259,5 +261,7 @@ void loop() {
     //         do_mash_kb();
     //     }
     // }
+    // this IS getting called when uncommented
+    //puts("loop()");
     lcd_display.update();
 }
